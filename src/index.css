@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Custom Scrollbar ─────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #00ff41; }
+
+/* ─── Base ──────────────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background-color: #0a0a0a;
+  color: #e8e8e8;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Glass Morphism ────────────────────────────── */
+.glass {
+  background: rgba(26, 26, 26, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.glass-green {
+  background: rgba(0, 255, 65, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 255, 65, 0.15);
+}
+
+/* ─── Green Glow Effects ────────────────────────── */
+.glow-text {
+  text-shadow: 0 0 20px rgba(0, 255, 65, 0.6), 0 0 40px rgba(0, 255, 65, 0.3);
+}
+.glow-border {
+  box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.3), 0 0 20px rgba(0, 255, 65, 0.1);
+}
+.glow-border:hover {
+  box-shadow: 0 0 0 1px rgba(0, 255, 65, 0.6), 0 0 30px rgba(0, 255, 65, 0.2);
+}
+
+/* ─── Gradient Text ─────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #00ff41, #00cc33, #00ff41);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ─── Noise Texture Overlay ─────────────────────── */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+/* ─── Ticker Tape ───────────────────────────────── */
+.ticker-wrap { overflow: hidden; white-space: nowrap; }
+.ticker-inner { display: inline-block; animation: ticker 40s linear infinite; }
+
+/* ─── Product Card Hover ────────────────────────── */
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.8), 0 0 20px rgba(0,255,65,0.08);
+}
+.product-card img {
+  transition: transform 0.4s ease;
+}
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+/* ─── Button Base ───────────────────────────────── */
+.btn-primary {
+  @apply bg-tv-green text-tv-black font-mono font-bold px-6 py-3 rounded-lg
+         hover:bg-tv-green-d transition-all duration-200 hover:shadow-green-md
+         active:scale-95 focus:outline-none focus:ring-2 focus:ring-tv-green focus:ring-offset-2 focus:ring-offset-tv-black;
+}
+.btn-outline {
+  @apply border border-tv-green text-tv-green font-mono font-semibold px-6 py-3 rounded-lg
+         hover:bg-tv-green hover:text-tv-black transition-all duration-200
+         active:scale-95 focus:outline-none;
+}
+.btn-ghost {
+  @apply text-tv-subtle font-mono px-4 py-2 rounded hover:text-tv-text hover:bg-tv-card transition-all duration-200;
+}
+
+/* ─── Badge ─────────────────────────────────────── */
+.badge-new    { @apply bg-tv-green text-tv-black text-xs font-mono font-bold px-2 py-0.5 rounded; }
+.badge-used   { @apply bg-tv-amber text-tv-black text-xs font-mono font-bold px-2 py-0.5 rounded; }
+.badge-repurposed { @apply bg-tv-blue text-white text-xs font-mono font-bold px-2 py-0.5 rounded; }
+
+/* ─── Section Title ─────────────────────────────── */
+.section-title {
+  @apply text-2xl md:text-3xl font-sans font-bold text-tv-text mb-2;
+}
+.section-subtitle {
+  @apply text-tv-subtle font-mono text-sm mb-8;
+}
+
+/* ─── Input ─────────────────────────────────────── */
+.input-dark {
+  @apply bg-tv-card border border-tv-border text-tv-text placeholder-tv-subtle
+         rounded-lg px-4 py-3 w-full font-mono text-sm
+         focus:outline-none focus:border-tv-green focus:shadow-green-sm
+         transition-all duration-200;
+}
+
+/* ─── Chat Bubble ───────────────────────────────── */
+.chat-user  { @apply bg-tv-green text-tv-black rounded-2xl rounded-br-sm px-4 py-2 max-w-xs ml-auto font-mono text-sm; }
+.chat-bot   { @apply bg-tv-card border border-tv-border text-tv-text rounded-2xl rounded-bl-sm px-4 py-2 max-w-xs font-mono text-sm; }
+
+/* ─── Masonry Grid ──────────────────────────────── */
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ─── Hero Particle Canvas ──────────────────────── */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(0,255,65,0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(0,255,65,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* ─── Skeleton Loading ──────────────────────────── */
+.skeleton {
+  @apply bg-tv-muted animate-pulse rounded;
+}
