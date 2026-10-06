@@ -9,11 +9,8 @@ dist-ssr/
 *.local
 
 # Environment files — NEVER commit these
-.env.local
-.env.*.local
-.env.production
-
-# Keep .env.example (no real secrets)
+.env
+.env.*
 !.env.example
 
 # Logs
